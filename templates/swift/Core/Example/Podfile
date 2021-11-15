@@ -1,21 +1,5 @@
 platform :ios, '11.0'
 
-$modules_path = '../../../../'
-
-$core_app_path = $modules_path + 'CoreApp/'
-
-$core_business_path = $modules_path + 'CoreBusiness/'
-$persistence_path = $core_business_path + 'Persistence/'
-$ui_path = $core_business_path + 'ui/'
-
-$features_path = $modules_path + 'Features/'
-$features_common_interfaces_path = $features_path + 'CommonInterfaces/'
-
-$services_path = $modules_path + 'Services/'
-$services_common_path = $services_path + 'Common/'
-
-$tests_path = $modules_path + 'Tests/'
-
 use_frameworks!
 
 target '${POD_DEMO_APP}' do
@@ -28,11 +12,5 @@ target '${POD_DEMO_APP}' do
     inherit! :search_paths
 
     pod '${POD_NAME}', :path => '../', :testspecs => ['Tests']
-    pod 'MPayTestUtils/Core', :path => '../../../../Tests/MPayTestUtils'
-
-    ui_modules
-    core_business_interface
-    services
-    features_common
   end
 end
