@@ -1,5 +1,12 @@
+//
+//  PROJECTTests.swift
+//  PROJECTTests
+//
+//  Created by Danilo Charantola on 21/05/20.
+//  Copyright © 2020 CocoaPods. All rights reserved.
+//
+
 import XCTest
-@testable import PROJECT
 
 class PROJECTTests: XCTestCase {
 
@@ -18,8 +25,9 @@ class PROJECTTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
+
 }

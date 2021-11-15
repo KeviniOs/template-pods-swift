@@ -1,15 +1,14 @@
 import UIKit
+import ${POD_NAME}Interface
+import ${POD_NAME}
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var performActionButton: UIButton!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPerformActionButton()
     }
 
-    @IBAction func performActionTouched(_ sender: Any) {}
+    @IBAction func buttonDidTouch(_ sender: UIButton) {
 
-    private func setupPerformActionButton() {}
+    }
 }

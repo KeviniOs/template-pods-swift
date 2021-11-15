@@ -2,35 +2,105 @@ platform :ios, '11.0'
 
 $modules_path = '../../../'
 
-$core_path = $modules_path + 'Core/'
-$shared_path = $modules_path + 'Shared/'
+$core_app_path = $modules_path + 'CoreApp/'
+
+$core_business_path = $modules_path + 'CoreBusiness/'
+$persistence_path = $core_business_path + 'Persistence/'
+$ui_path = $core_business_path + 'ui/'
+
+$features_path = $modules_path + 'Features/'
+$features_common_interfaces_path = $features_path + 'CommonInterfaces/'
+
+$services_path = $modules_path + 'Services/'
+$services_common_path = $services_path + 'Common/'
+
+$tests_path = $modules_path + 'Tests/'
 
 use_frameworks!
 
 def external_pods
-  pod 'SwiftGen'
+  pod 'Cartography'
+  pod 'Kingfisher', '5.7.0'
+  pod 'SwiftGen', '6.4.0'
   pod 'SwiftLint'
+  pod 'lottie-ios', '3.1.5'
 end
 
 def core_app
+  pod 'MPayActionBuilder', :path => $core_app_path + 'ActionBuilder/MPayActionBuilder'
+  pod 'MPayActionBuilderInterface', :path => $core_app_path + 'ActionBuilder/MPayActionBuilderInterface'
 end
 
-def shareds
-  pod '${POD_NAME}', :path => $shared_path + '${POD_NAME}'
+def core_business
+  pod 'MPayAnalytics', :path => $core_business_path + 'Analytics/MPayAnalytics'
+  pod 'MPayNavigation', :path => $core_business_path + 'Navigation/MPayNavigation'
+  pod 'MPayNetwork', :path => $core_business_path + 'Network/MPayNetwork'
+  pod 'MPayErrorHandler', :path => $core_business_path + 'ErrorHandler/MPayErrorHandler'
+  pod 'MPayRouter/Help', :path => $core_business_path + 'Router/MPayRouter'
 end
 
-def shareds_testspec
-  pod '${POD_NAME}', :path => $shared_path + '${POD_NAME}', :testspecs => ['Tests']
+def core_business_interface
+  pod 'MPayAnalyticsInterface', :path => $core_business_path + 'Analytics/MPayAnalyticsInterface'
+  pod 'MPayNavigationInterface', :path => $core_business_path + 'Navigation/MPayNavigationInterface'
+  pod 'MPayNetworkInterface', :path => $core_business_path + 'Network/MPayNetworkInterface'
+  pod 'MPayErrorHandlerInterface', :path => $core_business_path + 'ErrorHandler/MPayErrorHandlerInterface'
+  pod 'MPayRouterInterface/Help', :path => $core_business_path + 'Router/MPayRouterInterface'
+end
+
+def features_common
+  pod 'MPayBackendDrivenUI', :path => $features_common_interfaces_path + 'MPayBackendDrivenUI'
+  pod 'MPayFeatureInterface', :path => $features_common_interfaces_path + 'MPayFeatureInterface'
+end
+
+def features
+  pod '${POD_NAME}', :path => $features_path + '${POD_NAME}'
+  pod 'MPayGenericScreen', :path => $features_path + 'MPayGenericScreen'
+  pod 'MPayHelp', :path => $features_path + 'MPayHelp'
+end
+
+def features_testspec
+  pod '${POD_NAME}', :path => $features_path + '${POD_NAME}', :testspecs => ['Tests']
+  pod 'MPayTestUtils/BackendDrivenUI', :path => $tests_path + 'MPayTestUtils'
+  pod 'MPayTestUtils/ErrorHandler', :path => $tests_path + 'MPayTestUtils'
+  pod 'MPayTestUtils/Navigation', :path => $tests_path + 'MPayTestUtils'
+  pod 'MPayTestUtils/Network', :path => $tests_path + 'MPayTestUtils'
+  pod 'MPayTestUtils/UI', :path => $tests_path + 'MPayTestUtils'
+end
+
+def services
+  pod 'MPayGenericScreenModels', :path => $services_path + 'MPayGenericScreenModels'
+  pod 'MPayWhiteLabel', :path => $services_path + 'MPayWhiteLabel'
+end
+
+def services_common
+  pod 'MPayModels', :path => $services_common_path + 'MpayModels'
+  pod 'MPayErrorModels', :path => $services_common_path + 'MPayErrorModels'
+  pod 'MPayViewModels', :path => $services_common_path + 'MPayViewModels'
+  pod 'MPayExtensions', :path => $services_common_path + 'MPayExtensions'
+end
+
+def ui_modules
+  pod 'MPayAnimation', :path => $ui_path + 'MPayAnimation'
+  pod 'MPayDesignSystem', :path => $ui_path + 'MPayDesignSystem'
+  pod 'MPayImageFetcher', :path => $ui_path + 'MPayImageFetcher'
+  pod 'MPayUI', :path => $ui_path + 'MPayUI'
+  pod 'MPayUIProvider', :path => $ui_path + 'MPayUIProvider'
 end
 
 target '${POD_DEMO_APP}' do
   external_pods
   core_app
-  shareds
+  core_business
+  core_business_interface
+  features_common
+  services
+  services_common
+  ui_modules
+  features
 
   target '${POD_DEMO_APP}Tests' do
     inherit! :search_paths
 
-    shareds_testspec
+    features_testspec
   end
 end
