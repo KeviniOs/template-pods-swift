@@ -12,16 +12,13 @@ module Pod
         end
 
         def perform
-            module_type = configurator.ask_with_answers("What is the type of this module?", ["Feature", "Core", "Interface", "Shared"]).to_sym
+            module_type = configurator.ask_with_answers("What is the type of this module?", ["Feature", "Core", "Interface"]).to_sym
             project_folder = ""
             keep_demo = :no
             case module_type
                 when :feature
                 project_folder = "Feature/"
                 keep_demo = :yes
-                when :shared
-                project_folder = "Shared/"
-                keep_demo = :no
                 when :core
                 project_folder = "Core/"
                 keep_demo = :yes
@@ -60,12 +57,6 @@ module Pod
                                             `mv ./Sources/Feature/Resources ./`
                                             `mv ./Sources/Feature/Tests ./`
                                             `mv ./Sources/Feature/* ./Sources/`
-                                            when :shared
-                                            `mv ./templates/swift/Shared/* ./`
-                                            `mv ./Podspec/Shared/* ./`
-                                            `mv ./Sources/Shared/Resources ./`
-                                            `mv ./Sources/Shared/Tests ./`
-                                            `mv ./Sources/Shared/* ./Sources/`
                                             when :core
                                             `mv ./templates/swift/Core/* ./`
                                             `mv ./Podspec/Core/* ./`
@@ -80,7 +71,6 @@ module Pod
                                         `rm -fr ./Sources/Feature`
                                         `rm -fr ./Sources/Core`
                                         `rm -fr ./Sources/Interface`
-                                        `rm -fr ./Sources/Shared`
                                         `rm -fr ./Podspec`
                                         `rm -fr LICENSE`
 
