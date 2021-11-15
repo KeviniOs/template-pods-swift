@@ -1,0 +1,38 @@
+platform :ios, '11.0'
+
+$modules_path = '../../../'
+
+$core_path = $modules_path + 'Core/'
+$shared_path = $modules_path + 'Shared/'
+$tests_path = $modules_path + 'Tests/'
+$features_path = $modules_path + 'Feature/'
+
+use_frameworks!
+
+def external_pods
+  pod 'SwiftGen'
+  pod 'SwiftLint'
+end
+
+def core_app
+end
+
+def shareds
+  pod '${POD_NAME}', :path => $shared_path + '${POD_NAME}'
+end
+
+def shareds_testspec
+  pod '${POD_NAME}', :path => $shared_path + '${POD_NAME}', :testspecs => ['Tests']
+end
+
+target '${POD_DEMO_APP}' do
+  external_pods
+  core_app
+  shareds
+
+  target '${POD_DEMO_APP}Tests' do
+    inherit! :search_paths
+
+    shareds_testspec
+  end
+end

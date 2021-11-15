@@ -1,0 +1,14 @@
+use_frameworks!
+
+target '${POD_DEMO_APP}' do
+  pod 'SwiftGen'
+
+  pod '${POD_NAME}Interface', :path => './../../${POD_NAME}Interface/'
+  pod '${POD_NAME}', :path => '../'
+
+  target '${POD_DEMO_APP}_Tests' do
+    inherit! :search_paths
+
+    ${INCLUDED_PODS}
+  end
+end

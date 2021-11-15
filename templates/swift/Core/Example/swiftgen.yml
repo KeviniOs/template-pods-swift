@@ -1,0 +1,6 @@
+strings:
+    - inputs: ../Resources/Strings/Localizable.strings
+      outputs:
+      - templatePath: ../../../../../SwiftGen/strings/custom-structured-swift5.stencil
+        output: ../Sources/Generated/L10n.swift
+
