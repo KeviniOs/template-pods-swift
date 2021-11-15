@@ -1,12 +1,5 @@
 platform :ios, '11.0'
 
-$modules_path = '../../../../'
-
-$core_path = $modules_path + 'Core/'
-$features_path = $modules_path + 'Features/'
-$shared_path = $modules_path + 'Shared/'
-$tests_path = $modules_path + 'Tests/'
-
 use_frameworks!
 
 target '${POD_DEMO_APP}' do
@@ -18,6 +11,5 @@ target '${POD_DEMO_APP}' do
     inherit! :search_paths
 
     pod '${POD_NAME}', :path => '../', :testspecs => ['Tests']
-    #pod 'MPayTestUtils/Core', :path => '../../../../Tests/MPayTestUtils'
   end
 end
