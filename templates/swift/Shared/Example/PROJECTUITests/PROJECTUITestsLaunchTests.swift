@@ -1,10 +1,3 @@
-//
-//  PROJECTUITestsLaunchTests.swift
-//  PROJECTUITests
-//
-//  Created by Kevin Rosa on 15/11/21.
-//
-
 import XCTest
 
 class PROJECTUITestsLaunchTests: XCTestCase {

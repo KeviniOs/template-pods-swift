@@ -1,10 +1,3 @@
-//
-//  PROJECTTests.swift
-//  PROJECTTests
-//
-//  Created by Kevin Rosa on 15/11/21.
-//
-
 import XCTest
 @testable import PROJECT
 
@@ -29,5 +22,4 @@ class PROJECTTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
