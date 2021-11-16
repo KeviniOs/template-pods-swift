@@ -12,7 +12,7 @@ module Pod
         end
 
         def perform
-            module_type = configurator.ask_with_answers("What is the type of this module?", ["Feature", "Core", "Interface"]).to_sym
+            module_type = configurator.ask_with_answers("What is the type of this module?", ["Feature", "Core", "Interface", "Shared"]).to_sym
             project_folder = ""
             keep_demo = :no
             case module_type
@@ -24,6 +24,9 @@ module Pod
                 keep_demo = :yes
                 when :interface
                 project_folder = "Interface/"
+                keep_demo = :no
+            when :shared
+                project_folder = "Shared/"
                 keep_demo = :no
             end
 
@@ -57,6 +60,12 @@ module Pod
                                             `mv ./Sources/Feature/Resources ./`
                                             `mv ./Sources/Feature/Tests ./`
                                             `mv ./Sources/Feature/* ./Sources/`
+                                            when :shared
+                                            `mv ./templates/swift/Shared/* ./`
+                                            `mv ./Podspec/Shared/* ./`
+                                            `mv ./Sources/Shared/Resources ./`
+                                            `mv ./Sources/Shared/Tests ./`
+                                            `mv ./Sources/Shared/* ./Sources/`
                                             when :core
                                             `mv ./templates/swift/Core/* ./`
                                             `mv ./Podspec/Core/* ./`
@@ -68,6 +77,7 @@ module Pod
                                             `mv ./Podspec/Interface/* ./`
                                         end
 
+                                        `rm -fr ./Sources/Shared`
                                         `rm -fr ./Sources/Feature`
                                         `rm -fr ./Sources/Core`
                                         `rm -fr ./Sources/Interface`
@@ -87,5 +97,4 @@ module Pod
                                         `rm -fr .git`
         end
     end
-
 end
