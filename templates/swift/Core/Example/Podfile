@@ -3,8 +3,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '${POD_DEMO_APP}' do
-  external_pods
-
+  
   pod '${POD_NAME}Interface', :path => './../../${POD_NAME}Interface/'
   pod '${POD_NAME}', :path => '../'
 
