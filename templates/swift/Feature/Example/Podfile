@@ -3,7 +3,7 @@ platform :ios, '11.0'
 $modules_path = '../../../'
 
 $core_app_path = $modules_path + 'Core/'
-$features_path = $modules_path + 'Features/'
+$features_path = $modules_path + 'Feature/'
 $shared_path = $modules_path + 'Shared/'
 $tests_path = $modules_path + 'Tests/'
 
